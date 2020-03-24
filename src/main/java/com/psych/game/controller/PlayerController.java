@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class PlayerController {
+
     @Autowired
     private PlayerRepository playerRepository;
 
@@ -33,7 +34,7 @@ public class PlayerController {
 
 
     //URL - universal resource locator
-    @PutMapping("/players/{id")
+    @PutMapping("/players/{id}")
     public Player updatePlayer(@PathVariable(value = "id")Long id, @Valid @RequestBody Player player) throws Exception{
         Player p = playerRepository.findById(id).orElseThrow(() -> new Exception("Something Went Wrong"));
         p.setName(player.getName());
@@ -46,4 +47,6 @@ public class PlayerController {
         playerRepository.delete(p);
         return ResponseEntity.ok().build();
     }
+
+
 }
